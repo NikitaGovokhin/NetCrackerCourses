@@ -59,9 +59,9 @@ public class Flat implements Space, Serializable, Cloneable
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getRooms() + ", " + this.getArea() + ")");
-        return stringBuffer.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getRooms() + ", " + this.getArea() + ")");
+        return stringBuilder.toString();
     }
 
     @Override

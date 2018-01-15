@@ -33,15 +33,15 @@ public class HotelFloor extends DwellingFloor
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getStars() + ", " + this.getCnt());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getStars() + ", " + this.getCnt());
         for(int i = 0; i < this.getCnt(); i++)
         {
-            stringBuffer.append(", ");
-            stringBuffer.append(this.getSpace(i).toString());
+            stringBuilder.append(", ");
+            stringBuilder.append(this.getSpace(i).toString());
         }
-        stringBuffer.append(")");
-        return stringBuffer.toString();
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 
     @Override

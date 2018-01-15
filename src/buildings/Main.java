@@ -5,11 +5,20 @@ import buildings.dwelling.DwellingFloor;
 import buildings.dwelling.Flat;
 import buildings.dwelling.hotel.Hotel;
 import buildings.dwelling.hotel.HotelFloor;
+import buildings.interfaces.Building;
+import buildings.interfaces.Floor;
 import buildings.interfaces.Space;
 import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 import buildings.threads.*;
+
+
+import java.io.*;
+import java.lang.reflect.*;
+import java.util.Comparator;
+
+import static java.lang.Math.random;
 
 public class Main {
     public static void main(String [] argv)
@@ -121,6 +130,68 @@ public class Main {
             System.out.println(of);
         }
 
+
+        System.out.println("Test ser/deser: ");
+        try{
+            Buildings.serializeBuilding(h, new FileOutputStream("out.bin"));
+            System.out.println((Hotel)Buildings.deserialaizeBuilding(new FileInputStream("out.bin")));
+        }
+        catch(FileNotFoundException e)
+        {
+            e.getMessage();
+        }
+        catch (IOException e)
+        {
+            e.getMessage();
+        }
+
+        /*System.out.println("test file output");
+        try {
+            DataOutputStream dos = new DataOutputStream (new FileOutputStream("in.bin"));
+            Buildings.outputBuilding(dwelling, dos);
+            dos.close();
+            System.out.println((Dwelling)Buildings.inputBuilding(new FileInputStream("in.bin")));
+        }
+        catch (FileNotFoundException e){
+            e.getMessage();
+        }
+
+        catch (IOException e)
+        {
+            e.getMessage();
+        }
+
+        try
+        {
+            DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream("in2.bin"));
+            dataOutputStream.writeInt(0);
+            dataOutputStream.close();
+        }
+        catch (IOException e) {
+        }
+
+        try {
+            Buildings.serializeBuilding(dwelling, new FileOutputStream("ins.txt"));
+            System.out.println((Dwelling)Buildings.deserialaizeBuilding(new FileInputStream("ins.txt")));
+        }
+        catch (FileNotFoundException e){
+            e.getMessage();
+        }
+
+        catch (IOException e)
+        {
+            e.getMessage();
+        }
+
+        try
+        {
+            ObjectOutputStream dataOutputStream = new ObjectOutputStream(new FileOutputStream("ins2.txt"));
+            Integer v = 0;
+            dataOutputStream.writeInt(v);
+        }
+        catch (IOException e) {
+        }*/
+
         /*DwellingFloor df = new DwellingFloor(5);
         System.out.println("threads test:");
         Repairer repairer1 = new Repairer(officeFloor);
@@ -134,15 +205,52 @@ public class Main {
         cleaner.interrupt();
         repairer2.start();*/
 
-        DwellingFloor df_test = new DwellingFloor(5);
+        /*DwellingFloor df_test = new DwellingFloor(5);
         System.out.println("Test semaphore:");
         RepairerCleanerSemaphore repairerCleanerSemaphore = new RepairerCleanerSemaphore();
         Thread r = new Thread(new SequentalRepairer(df_test, repairerCleanerSemaphore));
         Thread c = new Thread(new SequentalCleaner(df_test, repairerCleanerSemaphore));
         c.start();
-        r.start();
+        r.start();*/
+        /*Dwelling dwel = null;
+        try {
+            dwel = (Dwelling)Buildings.inputBuilding(new FileInputStream("Input.txt"));
+        }
+        catch (FileNotFoundException e){
+            System.out.println("file not found");
+        }
+        catch (IOException e)
+        {
+            e.getMessage();
+        }
+
+        System.out.println(dwel);*/
 
 
+        System.out.println("Reflection test:");
+        try {
+            Class c = f1.getClass();
+            Method[] m = c.getMethods();
+            Constructor[] constructors = c.getConstructors();
+            Field[] fields = c.getFields();
+            for (Field field: fields) {
+                System.out.println( field.getName());
+            }
 
+        }
+        catch (Exception e){}
+
+        //lambda functions
+        Comparator<Space> comparatorForSpace = (space1, space2) -> Integer.compare(space1.getRooms(), space2.getRooms());
+        Comparator<Floor> comparatorForFloor = (floor1, floor2) -> Float.compare(floor1.getArea(), floor2.getArea());
+        Buildings.sort(floors, (floor1, floor2) -> Float.compare(floor1.getArea(), floor2.getArea()));
+
+        //reflect test
+        Office f_test = (Office) Buildings.createSpace(4, f.getClass());
+        System.out.println(f_test);
+        Flat[] f_ar = {f1,f1,f1};
+        Dwelling d_test = (Dwelling) Buildings.createBuilding(dwelling.getClass(),3, 1, 2, 3);
+        DwellingFloor df_test = (DwellingFloor) Buildings.createFloor(floors[0].getClass(), f1, f1, f1);
+        System.out.println(df_test);
     }
 }

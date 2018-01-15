@@ -35,8 +35,7 @@ public class DwellingFactory implements BuildingFactory
     }
 
     @Override
-    public Building createBuilding(int floorsCount, int[] spacesCount)
-    {
+    public Building createBuilding(int floorsCount, int[] spacesCount) {
         return new Dwelling(floorsCount, spacesCount);
     }
 

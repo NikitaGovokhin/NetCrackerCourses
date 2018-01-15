@@ -189,18 +189,19 @@ public class Dwelling implements Building, Serializable, Cloneable
             }
         return tmp;
     }
+
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getCntFloors());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getCntFloors());
         for(int i = 0; i < this.getCntFloors(); i++)
         {
-            stringBuffer.append(", ");
-            stringBuffer.append(this.getFloor(i).toString());
+            stringBuilder.append(", ");
+            stringBuilder.append(this.getFloor(i).toString());
         }
-        stringBuffer.append(")");
-        return stringBuffer.toString();
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 
     @Override

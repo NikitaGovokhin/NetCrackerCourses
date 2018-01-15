@@ -22,7 +22,7 @@ public class Office implements Space, Serializable, Cloneable
         this.area = area;
     }
 
-    public Office(int rooms, float area)
+    public Office(float area, int rooms)
     {
         this.rooms = rooms;
         this.area = area;
@@ -60,9 +60,9 @@ public class Office implements Space, Serializable, Cloneable
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getRooms() + ", " + this.getArea() + ")");
-        return stringBuffer.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getRooms() + ", " + this.getArea() + ")");
+        return stringBuilder.toString();
     }
 
     @Override

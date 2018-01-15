@@ -202,6 +202,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
         this.getElement(n).data = floor;
     }
 
+    @Override
     public Space getSpace(int n)
     {
         if(n < 0)
@@ -216,6 +217,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
         return null;
     }
 
+    @Override
     public void setSpace(int n, Space space)
     {
         if(n < 0)
@@ -232,6 +234,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
                 }
     }
 
+    @Override
     public void addSpace(int n, Space space)
     {
         if(n < 0)
@@ -248,6 +251,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
                 }
     }
 
+    @Override
     public void delSpace(int n)
     {
         if(n < 0)
@@ -264,6 +268,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
                 }
     }
 
+    @Override
     public Space getBestSpace()
     {
         if(head == null || this.getCntSpaces() == 0)
@@ -277,6 +282,7 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
         return max;
     }
 
+    @Override
     public Space[] getSortedSpaces()
     {
         Space tmp[] = new Office[this.getCntSpaces()];
@@ -298,17 +304,18 @@ public class OfficeBuilding implements Building, Serializable, Cloneable
         return tmp;
     }
 
+    @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getCntFloors());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getCntFloors());
         for(int i = 0; i < this.getCntFloors(); i++)
         {
-            stringBuffer.append(", ");
-            stringBuffer.append(this.getFloor(i).toString());
+            stringBuilder.append(", ");
+            stringBuilder.append(this.getFloor(i).toString());
         }
-        stringBuffer.append(")");
-        return stringBuffer.toString();
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 
     @Override

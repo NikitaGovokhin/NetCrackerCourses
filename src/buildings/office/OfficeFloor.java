@@ -104,6 +104,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
             this.addElement(i, new ListElement(spaces[i], null));
     }
 
+    @Override
     public int getCnt()
     {
         if (head == null || head.next == head)
@@ -121,6 +122,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         return ++j;
     }
 
+    @Override
     public float getArea()
     {
         if (head == null || head.next == head)
@@ -131,6 +133,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         return res;
     }
 
+    @Override
     public int getCntRooms()
     {
         if (head == null || head.next == head)
@@ -141,6 +144,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         return res;
     }
 
+    @Override
     public Space[] getSpaces()
     {
         if(head == null || this.getCnt() == 0)
@@ -151,6 +155,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         return res;
     }
 
+    @Override
     public Space getSpace(int n)
     {
         if(n < 0)
@@ -162,6 +167,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         return this.getElement(n).data;
     }
 
+    @Override
     public void setSpace(int n)
     {
         if(n < 0)
@@ -173,6 +179,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         this.getElement(n).data = new Office();
     }
 
+    @Override
     public void setSpace(int n, Space space)
     {
         if(n < 0)
@@ -184,6 +191,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         this.getElement(n).data = space;
     }
 
+    @Override
     public void addSpace(int n, Space space)
     {
         if(n < 0)
@@ -198,6 +206,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         this.addElement(this.getCnt(), new ListElement(space, null));
     }
 
+    @Override
     public void delSpace(int n)
     {
         if(n < 0)
@@ -207,6 +216,7 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
         this.delElement(n);
     }
 
+    @Override
     public Space getBestSpace()
     {
         if(head == null || this.getCnt() == 0)
@@ -223,15 +233,15 @@ public class OfficeFloor implements Floor, Serializable, Cloneable
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getCnt());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getCnt());
         for(int i = 0; i < this.getCnt(); i++)
         {
-            stringBuffer.append(", ");
-            stringBuffer.append(this.getSpace(i).toString());
+            stringBuilder.append(", ");
+            stringBuilder.append(this.getSpace(i).toString());
         }
-        stringBuffer.append(")");
-        return stringBuffer.toString();
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 
     @Override

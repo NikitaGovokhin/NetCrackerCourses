@@ -56,15 +56,15 @@ public class Hotel extends Dwelling
     @Override
     public String toString()
     {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(this.getClass().getSimpleName() + " (" + this.getStars() + ", " + this.getCntFloors());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.getClass().getSimpleName() + " (" + this.getStars() + ", " + this.getCntFloors());
         for(int i = 0; i < this.getCntFloors(); i++)
         {
-            stringBuffer.append(", ");
-            stringBuffer.append(this.getFloor(i).toString());
+            stringBuilder.append(", ");
+            stringBuilder.append(this.getFloor(i).toString());
         }
-        stringBuffer.append(")");
-        return stringBuffer.toString();
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 
     @Override
