@@ -5,8 +5,7 @@ import buildings.interfaces.Space;
 
 import java.util.Iterator;
 
-public class SpaceIterator implements Iterator<Space>
-{
+public class SpaceIterator implements Iterator<Space> {
     private Floor floor;
     private int index = 0;
 
@@ -15,14 +14,12 @@ public class SpaceIterator implements Iterator<Space>
     }
 
     @Override
-    public boolean hasNext()
-    {
+    public boolean hasNext() {
         return index != floor.getCnt() - 1;
     }
 
     @Override
-    public Space next()
-    {
-        return  floor.getSpace(++index);
+    public Space next() {
+        return floor.getSpace(++index);
     }
 }

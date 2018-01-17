@@ -21,15 +21,12 @@ import java.util.Comparator;
 import static java.lang.Math.random;
 
 public class Main {
-    public static void main(String [] argv)
-    {
+    public static void main(String[] argv) {
         DwellingFloor floors[] = new DwellingFloor[20];
-        for(int j = 0; j < 20; j++)
-        {
-            Flat flats[] = new Flat[5+j];
-            for(int i = 0; i < (5+j); i++)
-            {
-                flats[i] = new Flat(50+i*j, 2+i*j);
+        for (int j = 0; j < 20; j++) {
+            Flat flats[] = new Flat[5 + j];
+            for (int i = 0; i < (5 + j); i++) {
+                flats[i] = new Flat(50 + i * j, 2 + i * j);
             }
             floors[j] = new DwellingFloor(flats);
         }
@@ -42,66 +39,60 @@ public class Main {
         System.out.println(officeFloor.getCnt());
         System.out.println(officeFloor.getBestSpace().getArea());
         OfficeBuilding officeBuilding = new OfficeBuilding(4, 2, 2, 3, 1);
-        officeBuilding.addSpace(2,new Office(3, 400));
+        officeBuilding.addSpace(2, new Office(3, 400));
         System.out.println(officeBuilding.getBestSpace().getArea());
         Space tmp[] = officeBuilding.getSortedSpaces();
-        for(int i = 0; i < tmp.length; i++)
-            System.out.println(i+" "+tmp[i].getArea());
-        Office f = new Office(20,30);
-        dwelling.addSpace(2,f);
+        for (int i = 0; i < tmp.length; i++)
+            System.out.println(i + " " + tmp[i].getArea());
+        Office f = new Office(20, 30);
+        dwelling.addSpace(2, f);
         System.out.println();
         officeBuilding.delSpace(2);
         Space tmp1[] = officeBuilding.getSortedSpaces();
-        for(int i = 0; i < tmp1.length; i++)
-            System.out.println(i+" "+tmp1[i].getArea());
+        for (int i = 0; i < tmp1.length; i++)
+            System.out.println(i + " " + tmp1[i].getArea());
         System.out.println(dwelling.getSpace(2));
         System.out.println(dwelling.getSpace(1));
         System.out.println(dwelling);
-        Office cc = new Office(1,15);
+        Office cc = new Office(1, 15);
         System.out.println(cc.hashCode());
         System.out.println("clones 4 dwfl:");
-        try
-        {
+        try {
             System.out.println(floors[1]);
-            DwellingFloor ff = (DwellingFloor)floors[1].clone();
-            floors[1].setSpace(1, new Flat(1111,11111));
+            DwellingFloor ff = (DwellingFloor) floors[1].clone();
+            floors[1].setSpace(1, new Flat(1111, 11111));
             System.out.println(ff);
             System.out.println(floors[1]);
-        }
-        catch (CloneNotSupportedException e)
-        {
+        } catch (CloneNotSupportedException e) {
             System.out.println("error");
         }
-        Flat f1 = new Flat(1,1);
+        Flat f1 = new Flat(1, 1);
         OfficeFloor ff1 = new OfficeFloor(3);
 
         HotelFloor hf = new HotelFloor(3);
         hf.setStars(5);
         System.out.println(hf);
         Hotel h = new Hotel(hf);
-        h.setSpace(1, new Flat(1111,1111));
+        h.setSpace(1, new Flat(1111, 1111));
         System.out.println(h);
         System.out.println(h.getBestSpace());
         System.out.println("of clones:");
-        Office t = new Office(111,111);
+        Office t = new Office(111, 111);
         try {
             Office tt = (Office) t.clone();
             System.out.println(tt);
+        } catch (CloneNotSupportedException e) {
         }
-        catch(CloneNotSupportedException e){}
 
 
-        try
-        {
+        try {
             System.out.println(ff1);
             OfficeFloor ff2 = (OfficeFloor) ff1.clone();
             System.out.println(ff2);
-            ff1.setSpace(1,new Office(111,111));
+            ff1.setSpace(1, new Office(111, 111));
             System.out.println(ff1);
             System.out.println(ff2);
-        }
-        catch (CloneNotSupportedException e)
-        {
+        } catch (CloneNotSupportedException e) {
             System.out.println("error");
         }
 
@@ -109,39 +100,31 @@ public class Main {
         System.out.println(officeBuilding);
 
         System.out.println("ob clone:");
-        try
-        {
+        try {
             OfficeBuilding ff2 = (OfficeBuilding) officeBuilding.clone();
             System.out.println(ff2);
-            officeBuilding.setSpace(1,new Flat(11111,111));
+            officeBuilding.setSpace(1, new Flat(11111, 111));
             System.out.println(officeBuilding);
             System.out.println(ff2);
-        }
-        catch (CloneNotSupportedException e)
-        {
+        } catch (CloneNotSupportedException e) {
             System.out.println("error");
         }
 
         System.out.println("Test of Factory:");
         System.out.println(Buildings.createBuilding(floors));
 
-        for (Space of: officeFloor)
-        {
+        for (Space of : officeFloor) {
             System.out.println(of);
         }
 
 
         System.out.println("Test ser/deser: ");
-        try{
+        try {
             Buildings.serializeBuilding(h, new FileOutputStream("out.bin"));
-            System.out.println((Hotel)Buildings.deserialaizeBuilding(new FileInputStream("out.bin")));
-        }
-        catch(FileNotFoundException e)
-        {
+            System.out.println((Hotel) Buildings.deserialaizeBuilding(new FileInputStream("out.bin")));
+        } catch (FileNotFoundException e) {
             e.getMessage();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.getMessage();
         }
 
@@ -233,12 +216,12 @@ public class Main {
             Method[] m = c.getMethods();
             Constructor[] constructors = c.getConstructors();
             Field[] fields = c.getFields();
-            for (Field field: fields) {
-                System.out.println( field.getName());
+            for (Field field : fields) {
+                System.out.println(field.getName());
             }
 
+        } catch (Exception e) {
         }
-        catch (Exception e){}
 
         //lambda functions
         Comparator<Space> comparatorForSpace = (space1, space2) -> Integer.compare(space1.getRooms(), space2.getRooms());
@@ -248,8 +231,8 @@ public class Main {
         //reflect test
         Office f_test = (Office) Buildings.createSpace(4, f.getClass());
         System.out.println(f_test);
-        Flat[] f_ar = {f1,f1,f1};
-        Dwelling d_test = (Dwelling) Buildings.createBuilding(dwelling.getClass(),3, 1, 2, 3);
+        Flat[] f_ar = {f1, f1, f1};
+        Dwelling d_test = (Dwelling) Buildings.createBuilding(dwelling.getClass(), 3, 1, 2, 3);
         DwellingFloor df_test = (DwellingFloor) Buildings.createFloor(floors[0].getClass(), f1, f1, f1);
         System.out.println(df_test);
     }

@@ -8,11 +8,9 @@ import buildings.office.Office;
 import buildings.office.OfficeBuilding;
 import buildings.office.OfficeFloor;
 
-public class OfficeFactory implements BuildingFactory
-{
+public class OfficeFactory implements BuildingFactory {
     @Override
-    public Space createSpace(float area)
-    {
+    public Space createSpace(float area) {
         return new Office(area);
     }
 
@@ -22,14 +20,12 @@ public class OfficeFactory implements BuildingFactory
     }
 
     @Override
-    public Floor createFloor(int spaceCount)
-    {
+    public Floor createFloor(int spaceCount) {
         return new OfficeFloor(spaceCount);
     }
 
     @Override
-    public Floor createFloor(Space[] spaces)
-    {
+    public Floor createFloor(Space[] spaces) {
         return new OfficeFloor(spaces);
     }
 
@@ -39,8 +35,7 @@ public class OfficeFactory implements BuildingFactory
     }
 
     @Override
-    public Building createBuilding(Floor[] floors)
-    {
+    public Building createBuilding(Floor[] floors) {
         return new OfficeBuilding(floors);
     }
 }
